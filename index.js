@@ -3,6 +3,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateHtml = require("./generateHtml.js");
 const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager");
 const allEmployees = [];
 // add intern
@@ -26,28 +27,23 @@ inquirer
   .prompt([
     {
       type: "input",
-      message: "What is your user name?",
-      name: "username",
+      message: "What is your name?",
+      name: "name",
     },
     {
       type: "input",
-      message: "What's your location?",
-      name: "location",
+      message: "What's your email?",
+      name: "email",
     },
     {
       type: "input",
-      message: "What is your bio link?",
-      name: "bio",
+      message: "What is your ID",
+      name: "id",
     },
     {
       type: "input",
-      message: "What is your LinkedIn url?",
-      name: "linkedin",
-    },
-    {
-      type: "input",
-      message: "What is your GitHub url?",
-      name: "github",
+      message: "What is your office number?",
+      name: "officeNumber",
     },
   ])
   .then((answers) => {
@@ -57,12 +53,66 @@ inquirer
       answers.email,
       answers.officeNumber
     );
+
     allEmployees.push(manager);
 
+    inquirer.prompt([
+      {
+        type: "list",
+        message: "Would you like to add and engineer or intern?",
+        choices: ["intern", "engineer", "no, I'm done"],
+        name: "addIe",
+      },
+    ])
+      // establish switch here
+      .then((answer) => {
+        const value1 = (answer.addIe === "intern");
+        const value2 = (answer.addIe === "engineer");
+        switch(answer.addIe){
+            case value1:
+                inquirer
+                .prompt([
+                    {
+                    type: "input",
+                    message: "What is your name?",
+                    name: "name",
+                    },
+                    {
+                    type: "input",
+                    message: "What's your email?",
+                    name: "email",
+                    },
+                    {
+                    type: "input",
+                    message: "What is your ID",
+                    name: "id",
+                    },
+                    {
+                    type: "input",
+                    message: "What is your office number?",
+                    name: "officeNumber",
+                    },
+                    {
+                    type: "input",
+                    message: "What school are you with or from?",
+                    name: "school",
+                    },
+                ])
+                    .then((answers) => {
+                            const intern = new Intern(
+                              answers.name,
+                              answers.id,
+                              answers.email,
+                              answers.officeNumber,
+                              answers.school,
+                            );
+                            allEmployees.push(intern);
+                            break;
+                          });
+                }}
     fs.writeFile("answers.html", generateHtml(answers), (err) => {
       console.log(err);
-    });
-  });
+    })
 // generate an html from input
 // how do i specify where in the directory?
 
