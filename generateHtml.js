@@ -1,3 +1,36 @@
+function managerHtml(manager) {
+  return `<div class="card" id="username-card">
+  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">Manager ${manager.name}</h4>
+    <p class="card-text">
+      Manager id is ${manager.id}.
+      Manager email is ${manager.email}.
+    </p>
+  </div>
+</div>`;
+}
+
+function internHtml(employees) {
+  const internArray = employees.filter(
+    (employee) => employee.getRole() === "Intern"
+  );
+  return internArray
+    .map((intern) => {
+      return `<div class="card" id="username-card">
+  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">Intern ${intern.name}</h4>
+    <p class="card-text">
+      Intern id is ${intern.id}.
+      Intern email is ${intern.email}.
+    </p>
+  </div>
+</div>`;
+    })
+    .join("");
+}
+
 function generateHtml(answers) {
   return `<!DOCTYPE html>
     <html lang="en">
@@ -11,62 +44,9 @@ function generateHtml(answers) {
     
     <body>
       
-    <div class="card" id="username-card">
-    <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
-    <div class="card-body">
-      <h4 class="card-title">Username</h4>
-      <p class="card-text">
-        Your username is ${answers.username}.
-      </p>
-    </div>
-  </div>
-  
-  <div class="card" id="location-card">
-  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
-  <div class="card-body">
-    <h4 class="card-title">Username</h4>
-    <p class="card-text">
-      Your location is ${answers.location}.
-    </p>
-    <a href="#!" class="btn btn-primary">Go somewhere</a>
-  </div>
-  </div>
-  
-  <div class="card" id="bio-card">
-  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
-  <div class="card-body">
-    <h4 class="card-title">Bio Page</h4>
-    <p class="card-text">
-    </p>
-    <a href="${answers.bio}" class="btn btn-primary">Bio</a>
-  </div>
-  </div>
-  
-  /////// include email out to be able to open automatically with default email program 
-  
-  <div class="card" id="linkedin-card">
-  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
-  <div class="card-body">
-    <h4 class="card-title">LinkedIn</h4>
-    <p class="card-text">
-    </p>
-    <a href="${answers.linkedin}" class="btn btn-primary">LinkedIn</a>
-  </div>
-  </div>
-  
-  /////// include github username out to be able to open automatically in github 
-  <div class="card" id="github-card">
-  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
-  <div class="card-body">
-    <h4 class="card-title">GitHub</h4>
-    <p class="card-text">
-    </p>
-    <a href="${answers.github}" class="btn btn-primary">GitHub</a>
-  </div>
-  </div>
-    
-      <script src="script.js"></script>
-    
+    ${managerHtml(answers[0])}
+    ${internHtml(answers)}
+
     </body>
     </html>`;
 }
