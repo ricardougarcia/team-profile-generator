@@ -31,6 +31,25 @@ function internHtml(employees) {
     .join("");
 }
 
+function engineerHtml(employees) {
+  const engineerArray = employees.filter(
+    (employee) => employee.getRole() === "Intern"
+  );
+  return engineerArray
+    .map((engineer) => {
+      return `<div class="card" id="username-card">
+  <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">Intern ${engineer.name}</h4>
+    <p class="card-text">
+      Intern id is ${engineer.id}.
+      Intern email is ${engineer.email}.
+    </p>
+  </div>
+</div>`;
+    })
+    .join("");
+}
 function generateHtml(answers) {
   return `<!DOCTYPE html>
     <html lang="en">
@@ -46,7 +65,8 @@ function generateHtml(answers) {
       
     ${managerHtml(answers[0])}
     ${internHtml(answers)}
-
+    ${engineerHtml(answers)}
+    
     </body>
     </html>`;
 }
