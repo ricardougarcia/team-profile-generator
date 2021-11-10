@@ -40,10 +40,10 @@ function engineerHtml(employees) {
       return `<div class="card" id="username-card">
   <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">
   <div class="card-body">
-    <h4 class="card-title">Intern ${engineer.name}</h4>
+    <h4 class="card-title">Engineer ${engineer.name}</h4>
     <p class="card-text">
-      Intern id is ${engineer.id}.
-      Intern email is ${engineer.email}.
+      Engineer id is ${engineer.id}.
+      Engineer email is ${engineer.email}.
     </p>
   </div>
 </div>`;
