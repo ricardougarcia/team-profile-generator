@@ -14,6 +14,11 @@ SO THAT I have quick access to their emails and GitHub profiles
 
 The following image shows a mock-up of the generated HTML’s appearance and functionality:
 
-![This is a walkthrough video showcasing functionality and HTML output](https://watch.screencastify.com/v/rXKNjzLmtAgmGLXMNkMW)
+![This is a walkthrough video showcasing functionality and HTML output](https://watch.screencastify.com/v/rXKNjzLmtAgmGLXMNkMW).
+![or see the gif here](./src/Employee_Generator_Walkthrough.gif)
+
+## Github Link
+
+https://github.com/ricardougarcia/team-profile-generator.git
 
 MIT license Ricardo Garcia 2021
